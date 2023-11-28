@@ -7,17 +7,17 @@ class Repositorio {
 
     lateinit var jdbcTemplate: JdbcTemplate
 
-    var banco = 0;
-    var servidor = 0;
-    var especificacao = 0;
-    var componenteCPU = 0;
-    var componenteRAM = 0;
-    var componenteDISCO = 0;
-    var metricaCPU = 0;
-    var metricaRAM = 0;
-    var metricaDISCO = 0;
-    var plano = 0;
-    var particao = 0;
+    var banco :Int = 0;
+    var servidor :Int = 0;
+    var especificacao :Int = 0;
+    var componenteCPU :Int = 0;
+    var componenteRAM :Int = 0;
+    var componenteDISCO :Int = 0;
+    var metricaCPU :Int = 0;
+    var metricaRAM :Int = 0;
+    var metricaDISCO :Int = 0;
+    var plano :Int = 0;
+    var particao :Int = 0;
 
     fun iniciar() {
         jdbcTemplate = Conexao.jdbcTemplate!!
