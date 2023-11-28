@@ -16,7 +16,7 @@ class Repositorio {
     var metricaCPU = 0;
     var metricaRAM = 0;
     var metricaDISCO = 0;
-    var locacao = 0;
+    var plano = 0;
     var particao = 0;
 
     fun iniciar() {
@@ -93,7 +93,7 @@ class Repositorio {
                   resultSet.getInt("fkEspecificacoes")
               })
 
-              val selectComponenteCPU = "SELECT componente.idComponentes FROM componente JOIN servidor ON componente.servidor_idServidor = servidor.idServidor WHERE modelo = 'cpu' AND servidor.idServidor = ?;"
+              val selectComponenteCPU = "SELECT componentes.idComponentes FROM componentes JOIN servidor ON componentes.fkServidor = servidor.idServidor WHERE modelo = 'cpu' AND servidor.idServidor = ?;"
               componenteCPU = jdbcTemplate.execute(selectComponenteCPU, PreparedStatementCallback { preparedStatement ->
                   preparedStatement.setInt(1, servidor)
                   val resultSet = preparedStatement.executeQuery()
@@ -101,7 +101,7 @@ class Repositorio {
                   resultSet.getInt("idComponentes")
               })
 
-              val selectComponenteRAM = "select componente.idComponentes from componente where servidor_idServidor = ? and modelo = \"ram\";"
+              val selectComponenteRAM = "select componentes.idComponentes from componentes where fkServidor = ? and modelo = 'ram';"
               componenteRAM = jdbcTemplate.execute(selectComponenteRAM, PreparedStatementCallback { preparedStatement ->
                   preparedStatement.setInt(1, servidor)
                   val resultSet = preparedStatement.executeQuery()
@@ -109,7 +109,7 @@ class Repositorio {
                   resultSet.getInt("idComponentes")
               })
 
-              val selectComponenteDISCO = "select componente.idComponentes from componente where servidor_idServidor = ? and modelo = \"disco\";"
+              val selectComponenteDISCO = "select componentes.idComponentes from componentes where fkServidor = ? and modelo = 'disco';"
               componenteDISCO = jdbcTemplate.execute(selectComponenteDISCO, PreparedStatementCallback { preparedStatement ->
                   preparedStatement.setInt(1, servidor)
                   val resultSet = preparedStatement.executeQuery()
@@ -117,7 +117,7 @@ class Repositorio {
                   resultSet.getInt("idComponentes")
               })
 
-              val selectMetricaCPU = "select componente.fkMetrica from componente where servidor_idServidor = ? and modelo = \"cpu\";"
+              val selectMetricaCPU = "select componentes.fkMetrica from componentes where fkServidor = ? and modelo = 'cpu';"
               metricaCPU = jdbcTemplate.execute(selectMetricaCPU, PreparedStatementCallback { preparedStatement ->
                   preparedStatement.setInt(1, servidor)
                   val resultSet = preparedStatement.executeQuery()
@@ -125,7 +125,7 @@ class Repositorio {
                   resultSet.getInt("fkMetrica")
               })
 
-              val selectMetricaRAM = "select componente.fkMetrica from componente where servidor_idServidor = ? and modelo = \"ram\";"
+              val selectMetricaRAM = "select componentes.fkMetrica from componentes where fkServidor = ? and modelo = 'ram';"
               metricaRAM = jdbcTemplate.execute(selectMetricaRAM, PreparedStatementCallback { preparedStatement ->
                   preparedStatement.setInt(1, servidor)
                   val resultSet = preparedStatement.executeQuery()
@@ -133,7 +133,7 @@ class Repositorio {
                   resultSet.getInt("fkMetrica")
               })
 
-              val selectMetricaDISCO = "select componente.fkMetrica from componente where servidor_idServidor = ? and modelo = \"disco\";"
+              val selectMetricaDISCO = "select componentes.fkMetrica from componentes where fkServidor = ? and modelo = 'disco';"
               metricaDISCO = jdbcTemplate.execute(selectMetricaDISCO, PreparedStatementCallback { preparedStatement ->
                   preparedStatement.setInt(1, servidor)
                   val resultSet = preparedStatement.executeQuery()
@@ -141,8 +141,15 @@ class Repositorio {
                   resultSet.getInt("fkMetrica")
               })
 
-              locacao = 1
-              particao = 1
+              val selectPlano = "select fkPlano from servidor where idServidor = ?;"
+              plano = jdbcTemplate.execute(selectPlano, PreparedStatementCallback { preparedStatement ->
+                  preparedStatement.setInt(1, servidor)
+                  val resultSet = preparedStatement.executeQuery()
+                  resultSet.next()
+                  resultSet.getInt("fkPlano")
+              })
+
+              particao = 2
 
               println("Captura foi inicializada! Verifique sua dashboard!")
 
