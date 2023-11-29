@@ -52,7 +52,7 @@ def mysql_connection(host, user, passwd, database=None):
         )
         return connection
 
-connection = mysql_connection('localhost', 'root', 'urubu100', 'SecurityBank')
+connection = mysql_connection('localhost', 'root', 'urubu100', 'banco1')
 
 sql_server_connection = pymssql.connect(server='34.206.192.7', database='SecurityBank', user='sa', password='UrubuDoGit123')
 
@@ -109,11 +109,11 @@ cursor.close()
 cursorSQL.close()
 """
 
-        val nomeArquivo = "CaptacaoNatalia.py"
+        val nomeArquivo = "CaptacaoNataliaPt2.py"
 
         File(nomeArquivo).writeText(codigo)
 
-        Runtime.getRuntime().exec("python3 $nomeArquivo")
+        Runtime.getRuntime().exec("python3 CaptacaoNataliaPt2.py")
 }
 
 
