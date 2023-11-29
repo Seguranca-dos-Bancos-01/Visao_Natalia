@@ -9,7 +9,7 @@ object ConexaoSQL {
                 dataSource.driverClassName = "com.microsoft.sqlserver.jdbc.SQLServerDriver"
                 val serverName = "34.206.192.7"
                 val dataBase = "SecurityBank"
-                dataSource.url = "jdbc:sqlserver://$serverName;database=$dataBase;encrypt=true;trustServerCertificate=true"
+                dataSource.url = "jdbc:sqlserver://$serverName;database=$dataBase;encrypt=true;"
                 dataSource.username = "sa"
                 dataSource.password = "UrubuDoGit123"
                 val novoJdbcTemplate = JdbcTemplate(dataSource)

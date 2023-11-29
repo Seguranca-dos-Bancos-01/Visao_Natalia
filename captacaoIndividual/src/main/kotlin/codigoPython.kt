@@ -52,7 +52,7 @@ def mysql_connection(host, user, passwd, database=None):
         )
         return connection
 
-connection = mysql_connection('localhost', 'root', 'Juronaty@23', 'SecurityBank')
+connection = mysql_connection('localhost', 'root', 'urubu100', 'SecurityBank')
 
 def sql_server_connection(server, database, username, password):
     conn_str = f'DRIVER={{SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password}'
