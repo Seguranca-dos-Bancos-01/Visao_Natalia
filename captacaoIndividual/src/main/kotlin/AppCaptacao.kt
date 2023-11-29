@@ -3,7 +3,7 @@ fun main() {
     Conexao.jdbcTemplate
 
     // chamando as funções do mysql local
-    val repositorio = Repositorio()
+    val repositorio = RepositorioSQL()
     repositorio.iniciar()
 
 
