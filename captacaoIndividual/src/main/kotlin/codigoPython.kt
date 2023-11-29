@@ -84,20 +84,40 @@ while True :
     cursor.execute(query, insert)
     connection.commit() 
     
-    querySQLSERVER = '''
+    querySQLSERVER1 = '''
             INSERT INTO registros (dataHorario, dadoCaptado, fkServidorReg, fkBanco, fkEspecificacoes, fkComponentesReg, fkMetrica, fkPlano, fkParticao) VALUES
-            (%s, %s, %s, %s, %s, %s, %s, %s, %s),
-            (%s, %s, %s, %s, %s, %s, %s, %s, %s),
             (%s, %s, %s, %s, %s, %s, %s, %s, %s);
     '''
 
-    insertSQLSERVER = [
-        data, cpu, ${servidor}, ${banco}, ${especificacao}, ${componenteCPU}, ${metricaCPU}, ${plano}, ${particao},
-        data, ram, ${servidor}, ${banco}, ${especificacao}, ${componenteRAM}, ${metricaRAM}, ${plano}, ${particao},
-        data, disco, ${servidor}, ${banco}, ${especificacao}, ${componenteDISCO}, ${metricaDISCO}, ${plano}, ${particao},
-    ]
+    insertSQLSERVER1 = (
+        data, cpu, ${servidor}, ${banco}, ${especificacao}, ${componenteCPU}, ${metricaCPU}, ${plano}, ${particao}    
+    )
     
-    insert_data(server_connection,querySQLSERVER,insertSQLSERVER)
+    insert_data(server_connection,querySQLSERVER1,insertSQLSERVER1)
+    
+    
+    querySQLSERVER2 = '''
+            INSERT INTO registros (dataHorario, dadoCaptado, fkServidorReg, fkBanco, fkEspecificacoes, fkComponentesReg, fkMetrica, fkPlano, fkParticao) VALUES
+            (%s, %s, %s, %s, %s, %s, %s, %s, %s);
+    ''' 
+    insertSQLSERVER2 = (
+        data, ram, ${servidor}, ${banco}, ${especificacao}, ${componenteRAM}, ${metricaRAM}, ${plano}, ${particao} 
+    )    
+    
+    
+    insert_data(server_connection,querySQLSERVER2,insertSQLSERVER2)
+    
+    
+    querySQLSERVER3 = '''
+            INSERT INTO registros (dataHorario, dadoCaptado, fkServidorReg, fkBanco, fkEspecificacoes, fkComponentesReg, fkMetrica, fkPlano, fkParticao) VALUES
+            (%s, %s, %s, %s, %s, %s, %s, %s, %s);
+    ''' 
+
+    insertSQLSERVER3 = (
+        data, disco, ${servidor}, ${banco}, ${especificacao}, ${componenteDISCO}, ${metricaDISCO}, ${plano}, ${particao}  
+    )   
+
+    insert_data(server_connection,querySQLSERVER3,insertSQLSERVER3)
 
    
 
