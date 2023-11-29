@@ -119,7 +119,7 @@ cursorSQL.close()
 
         File(nomeArquivo).writeText(codigo)
 
-        Runtime.getRuntime().exec("py $nomeArquivo")
+        Runtime.getRuntime().exec("python3 $nomeArquivo")
 }
 
 
