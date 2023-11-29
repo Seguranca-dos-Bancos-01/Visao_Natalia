@@ -54,7 +54,7 @@ def mysql_connection(host, user, passwd, database=None):
 
 connection = mysql_connection('localhost', 'root', 'urubu100', 'SecurityBank')
 
-sql_server_connection = pymssql.connect(server='34.206.192.7', database='SecurityBank', user='sa', password='UrubuDoGit123')
+server_connection = pymssql.connect(server='34.206.192.7', database='SecurityBank', user='sa', password='UrubuDoGit123')
 
 
 while True :
@@ -82,9 +82,9 @@ while True :
     
     querySQLSERVER = '''
             INSERT INTO registros (dataHorario, dadoCaptado, fkServidorReg, fkBanco, fkEspecificacoes, fkComponentesReg, fkMetrica, fkPlano, fkParticao) VALUES
-            (?, ?, ?, ?, ?, ?, ?, ?, ?),
-            (?, ?, ?, ?, ?, ?, ?, ?, ?),
-            (?, ?, ?, ?, ?, ?, ?, ?, ?);
+            (%s, %s, %s, %s, %s, %s, %s, %s, %s),
+            (%s, %s, %s, %s, %s, %s, %s, %s, %s),
+            (%s, %s, %s, %s, %s, %s, %s, %s, %s);
     '''
 
     insertSQLSERVER = [
