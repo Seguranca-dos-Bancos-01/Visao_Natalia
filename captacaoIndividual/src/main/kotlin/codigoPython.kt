@@ -4,7 +4,7 @@ object codigoPython {
 
     fun captcao() {
 
-        val fks = Repositorio()
+        val fks = RepositorioSQL()
 
         fks.iniciar()
         fks.verificarUsuario()
@@ -39,7 +39,7 @@ import psutil
 import time
 import datetime
 from mysql.connector import connect
-import pyodbc
+import pymssql
 
 # Conectando no Local 
 
@@ -54,13 +54,7 @@ def mysql_connection(host, user, passwd, database=None):
 
 connection = mysql_connection('localhost', 'root', 'urubu100', 'SecurityBank')
 
-def sql_server_connection(server, database, username, password):
-    conn_str = f'DRIVER={{SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password}'
-    connectionSQL = pyodbc.connect(conn_str)
-    
-    return connectionSQL
-
-server_connection = sql_server_connection('34.206.192.7', 'SecurityBank', 'sa', 'UrubuDoGit123')
+sql_server_connection = pymssql.connect(server='34.206.192.7', database='SecurityBank', user='sa', password='UrubuDoGit123')
 
 
 while True :

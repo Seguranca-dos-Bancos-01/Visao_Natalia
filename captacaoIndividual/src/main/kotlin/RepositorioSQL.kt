@@ -20,7 +20,7 @@ class RepositorioSQL {
     var particao = 0;
 
     fun iniciar() {
-        jdbcTemplate = ConexaoSQL.jdbcTemplate!!
+        jdbcTemplate = Conexao.jdbcTemplate!!
 
     }
     fun verificarUsuario() {
