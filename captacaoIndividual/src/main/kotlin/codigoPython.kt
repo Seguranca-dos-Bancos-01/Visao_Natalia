@@ -56,6 +56,10 @@ connection = mysql_connection('localhost', 'root', 'urubu100', 'SecurityBank')
 
 server_connection = pymssql.connect(server='34.206.192.7', database='SecurityBank', user='sa', password='UrubuDoGit123')
 
+def insert_data(connection, query, values):
+    cursor = server_connection.cursor()
+    cursor.execute(query, values)
+    connection.commit()
 
 while True :
     cpu = round(psutil.cpu_percent(interval = 1), 2)
@@ -93,9 +97,7 @@ while True :
         data, disco, ${servidor}, ${banco}, ${especificacao}, ${componenteDISCO}, ${metricaDISCO}, ${plano}, ${particao},
     ]
     
-    cursorSQL = server_connection.cursor()
-    cursorSQL.execute(querySQLSERVER, insertSQLSERVER)
-    server_connection.commit()
+    insert_data(server_connection,querySQLSERVER,insertSQLSERVER)
 
    
 
@@ -106,7 +108,7 @@ print(f'{disco}')
 time.sleep(30)
     
 cursor.close()
-cursorSQL.close()
+
 """
 
         val nomeArquivo = "CaptacaoNataliaPt2.py"
